@@ -33,14 +33,14 @@ Remove-Item "$ahk_exe_dir\Lib\*"
 
 # >>>>>>>>>> 2. handle custom lib
 if (!(Test-Path "$ahk_exe_dir\Lib\rdee.ahk")) {
-    New-Item -ItemType SymbolicLink -Path $ahk_exe_dir\Lib\rdee.ahk -Target $curDir/myLibs/rdee.ahk
+    New-Item -ItemType SymbolicLink -Path $ahk_exe_dir\Lib\rdee.ahk -Target $curDir/../myLibs/rdee.ahk
 }
 
 # >>>>>>>>>> 3. handle 3rd-party libs
-$libs3p = Get-ChildItem -Path $curDir\3rd-party-libs\*ahk -File
+$libs3p = Get-ChildItem -Path $curDir\..\3rd-party-libs\*ahk -File
 foreach ($file in $libs3p) {
     if (!(Test-Path $ahk_exe_dir\Lib\$($file.Name))) {
-        New-Item -ItemType SymbolicLink -Path $ahk_exe_dir\Lib\$($file.Name) -Target $curDir\3rd-party-libs\$($file.Name)
+        New-Item -ItemType SymbolicLink -Path $ahk_exe_dir\Lib\$($file.Name) -Target $curDir\..\3rd-party-libs\$($file.Name)
     }
 }
 
